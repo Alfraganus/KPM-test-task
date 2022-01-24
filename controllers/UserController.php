@@ -68,7 +68,7 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
             if ($model->save()) {
                 $identity = User::findOne(['username' => $model->username]);
